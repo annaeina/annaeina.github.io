@@ -6,7 +6,7 @@ export default defineAstroPaperConfig({
     title: "Linglin He",
     description: "Personal website and blog of Linglin He.",
     author: "Linglin He",
-    profile: "/about",
+    profile: "/",
     ogImage: "default-og.jpg",
     lang: "en",
     timezone: "Asia/Shanghai",
