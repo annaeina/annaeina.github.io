@@ -16,7 +16,7 @@ export interface ResearchEntry {
   imageHeight: number;
   title: string;
   url?: string;
-  authors: ResearchAuthor[];
+  authors?: ResearchAuthor[];
   venue: string;
   links?: ResearchLink[];
 }
@@ -30,22 +30,7 @@ export const research: ResearchEntry[] = [
     imageHeight: 1254,
     title:
       "RetVDQ: Retrieval-Aware Variable-Depth Residual Quantization for Visual Document Retrieval",
-    url: "https://openreview.net/forum?id=kUJHsGLsyH&referrer=%5BAuthor%20Console%5D(%2Fgroup%3Fid%3DICLR.cc%2F2027%2FConference%2FAuthors%23your-submissions)",
-    authors: [
-      { name: "Linglin He", me: true },
-      { name: "Haokun Wen" },
-      { name: "Haocheng Dou" },
-      { name: "Na Zheng" },
-      { name: "Linyi Yang" },
-      { name: "Xuemeng Song", url: "https://xuemengsong.github.io/" },
-    ],
-    venue: "ICLR 2027 · Under Review",
-    links: [
-      {
-        label: "OpenReview",
-        url: "https://openreview.net/forum?id=kUJHsGLsyH&referrer=%5BAuthor%20Console%5D(%2Fgroup%3Fid%3DICLR.cc%2F2027%2FConference%2FAuthors%23your-submissions)",
-      },
-    ],
+    venue: "Manuscript under review",
   },
   {
     image: "voice-padding.png",

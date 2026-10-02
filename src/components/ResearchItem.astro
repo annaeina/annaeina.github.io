@@ -13,7 +13,7 @@ const {
   imageHeight,
   title,
   url,
-  authors,
+  authors = [],
   venue,
   links = [],
   headingLevel = "h3",
@@ -60,27 +60,33 @@ const Heading = headingLevel;
       }
     </Heading>
 
-    <p class="mt-1 leading-6">
-      {
-        authors.map((author, index) => (
-          <Fragment>
-            {author.url ? (
-              <a
-                href={resolveHref(author.url)}
-                target={isExternal(author.url) ? "_blank" : undefined}
-                rel={isExternal(author.url) ? "noopener noreferrer" : undefined}
-                class:list={["hover:text-accent", { "font-bold": author.me }]}
-              >
-                {author.name}
-              </a>
-            ) : (
-              <span class:list={{ "font-bold": author.me }}>{author.name}</span>
-            )}
-            {index < authors.length - 1 ? ", " : ""}
-          </Fragment>
-        ))
-      }
-    </p>
+    {
+      authors.length > 0 && (
+        <p class="mt-1 leading-6">
+          {authors.map((author, index) => (
+            <Fragment>
+              {author.url ? (
+                <a
+                  href={resolveHref(author.url)}
+                  target={isExternal(author.url) ? "_blank" : undefined}
+                  rel={
+                    isExternal(author.url) ? "noopener noreferrer" : undefined
+                  }
+                  class:list={["hover:text-accent", { "font-bold": author.me }]}
+                >
+                  {author.name}
+                </a>
+              ) : (
+                <span class:list={{ "font-bold": author.me }}>
+                  {author.name}
+                </span>
+              )}
+              {index < authors.length - 1 ? ", " : ""}
+            </Fragment>
+          ))}
+        </p>
+      )
+    }
 
     <p class="mt-1 text-lg italic">{venue}</p>
 
