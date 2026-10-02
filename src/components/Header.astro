@@ -50,8 +50,16 @@ const isActive = (path: string) => {
   >
     <a
       href={getRelativeLocaleUrl(locale, "")}
-      class="absolute py-1 text-xl leading-8 font-semibold whitespace-nowrap sm:static sm:my-auto sm:text-2xl sm:leading-none"
+      class="absolute flex items-center gap-2 py-1 text-xl leading-8 font-semibold whitespace-nowrap sm:static sm:my-auto sm:text-2xl sm:leading-none"
     >
+      <img
+        src={getAssetPath("logo.png")}
+        alt=""
+        width="1109"
+        height="1419"
+        aria-hidden="true"
+        class="h-9 w-auto shrink-0 object-contain sm:h-10"
+      />
       {site.title}
     </a>
     <nav
