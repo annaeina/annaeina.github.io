@@ -1,0 +1,24 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import ResearchItem from "@/components/ResearchItem.astro";
+import { research } from "@/data/research";
+---
+
+<Layout
+  title="Research | Linglin He"
+  description="Research publications by Linglin He in multimodal retrieval, representation compression, and speech separation."
+>
+  <Header />
+
+  <main id="main-content" class="app-layout py-12">
+    <h1 class="mb-12 text-4xl font-bold">Research</h1>
+
+    <div class="space-y-14 sm:space-y-16" data-publication-list>
+      {research.map(item => <ResearchItem {...item} headingLevel="h2" />)}
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

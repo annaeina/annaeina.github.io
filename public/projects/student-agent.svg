@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-labelledby="title desc">
+  <title id="title">Autonomous student productivity agent</title>
+  <desc id="desc">An agent connects scheduling, memory, retrieval, and tool-use modules.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eef2ff"/>
+      <stop offset="1" stop-color="#ecfeff"/>
+    </linearGradient>
+    <linearGradient id="core" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4f46e5"/>
+      <stop offset="1" stop-color="#0891b2"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#312e81" flood-opacity=".15"/>
+    </filter>
+  </defs>
+  <rect width="640" height="400" rx="28" fill="url(#bg)"/>
+  <circle cx="90" cy="72" r="74" fill="#c7d2fe" opacity=".55"/>
+  <circle cx="566" cy="340" r="104" fill="#a5f3fc" opacity=".42"/>
+
+  <g stroke="#94a3b8" stroke-width="4" stroke-linecap="round">
+    <path d="M236 164 176 115"/>
+    <path d="M404 164 464 115"/>
+    <path d="M236 236 176 285"/>
+    <path d="M404 236 464 285"/>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="228" y="108" width="184" height="184" rx="42" fill="url(#core)"/>
+    <rect x="266" y="150" width="108" height="88" rx="22" fill="#fff" opacity=".95"/>
+    <circle cx="298" cy="187" r="9" fill="#4f46e5"/>
+    <circle cx="342" cy="187" r="9" fill="#0891b2"/>
+    <path d="M295 215c16 13 34 13 50 0" fill="none" stroke="#475569" stroke-width="7" stroke-linecap="round"/>
+    <path d="M320 132v-18" stroke="#fff" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="320" cy="105" r="8" fill="#fff"/>
+  </g>
+
+  <g fill="#fff" stroke="#cbd5e1" stroke-width="2" filter="url(#shadow)">
+    <rect x="76" y="62" width="128" height="94" rx="18"/>
+    <rect x="436" y="62" width="128" height="94" rx="18"/>
+    <rect x="76" y="244" width="128" height="94" rx="18"/>
+    <rect x="436" y="244" width="128" height="94" rx="18"/>
+  </g>
+
+  <g fill="none" stroke="#4f46e5" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="108" y="89" width="64" height="48" rx="7"/>
+    <path d="M108 105h64M124 80v18M156 80v18"/>
+  </g>
+  <g fill="none" stroke="#0891b2" stroke-width="6" stroke-linecap="round">
+    <ellipse cx="500" cy="91" rx="36" ry="12"/>
+    <path d="M464 91v32c0 7 16 12 36 12s36-5 36-12V91M464 107c0 7 16 12 36 12s36-5 36-12"/>
+  </g>
+  <g fill="none" stroke="#7c3aed" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="122" cy="291" r="15"/>
+    <circle cx="164" cy="276" r="11"/>
+    <circle cx="170" cy="316" r="9"/>
+    <path d="m136 286 18-7M135 299l27 13"/>
+  </g>
+  <g fill="none" stroke="#0e7490" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M468 276h64v42h-64z"/>
+    <path d="m475 287 18 15 32-20"/>
+  </g>
+</svg>

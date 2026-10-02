@@ -8,7 +8,7 @@ import IconSearch from "@/assets/icons/IconSearch.svg";
 import IconMoon from "@/assets/icons/IconMoon.svg";
 import IconX from "@/assets/icons/IconX.svg";
 import LinkButton from "./LinkButton.astro";
-import { stripBase, stripLocale } from "@/utils/withBase";
+import { getAssetPath, stripBase, stripLocale } from "@/utils/withBase";
 import { useTranslations } from "@/i18n";
 import config from "@/config";
 
@@ -76,26 +76,47 @@ const isActive = (path: string) => {
       >
         <li class="col-span-2">
           <a
+            href={getRelativeLocaleUrl(locale, "research")}
+            class:list={{ "active-nav": isActive("/research") }}
+          >
+            Research
+          </a>
+        </li>
+
+        <li class="col-span-2">
+          <a
+            href={getRelativeLocaleUrl(locale, "projects")}
+            class:list={{ "active-nav": isActive("/projects") }}
+          >
+            Projects
+          </a>
+        </li>
+
+        <li class="col-span-2">
+          <a
             href={getRelativeLocaleUrl(locale, "posts")}
             class:list={{ "active-nav": isActive("/posts") }}
           >
-            {t.nav.posts}
+            Blog
           </a>
         </li>
+
         <li class="col-span-2">
           <a
-            href={getRelativeLocaleUrl(locale, "tags")}
-            class:list={{ "active-nav": isActive("/tags") }}
+            href={getAssetPath("cv.pdf")}
+            title="Open CV (PDF)"
+            class:list={{ "active-nav": isActive("/cv") }}
           >
-            {t.nav.tags}
+            CV
           </a>
         </li>
+
         <li class="col-span-2">
           <a
             href={getRelativeLocaleUrl(locale, "about")}
             class:list={{ "active-nav": isActive("/about") }}
           >
-            {t.nav.about}
+            About
           </a>
         </li>
         {

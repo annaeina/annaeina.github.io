@@ -1,0 +1,27 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+---
+
+<Layout>
+  <Header />
+
+  <main id="main-content" class="app-layout py-12">
+    <h1 class="mb-8 text-4xl font-bold">CV</h1>
+
+    <p class="mb-6 text-lg">
+      My curriculum vitae.
+    </p>
+
+    <a
+      href="/cv.pdf"
+      target="_blank"
+      class="text-accent font-medium underline underline-offset-4"
+    >
+      Download CV (PDF)
+    </a>
+  </main>
+
+  <Footer />
+</Layout>

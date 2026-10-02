@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import { getRelativeLocaleUrl } from "astro:i18n";
-import IconRss from "@/assets/icons/IconRss.svg";
+
 import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
@@ -9,120 +9,160 @@ import Footer from "@/components/Footer.astro";
 import Socials from "@/components/Socials.astro";
 import Card from "@/components/Card.astro";
 import LinkButton from "@/components/LinkButton.astro";
+import ResearchItem from "@/components/ResearchItem.astro";
+
 import { getSortedPosts } from "@/utils/getSortedPosts";
-import { useTranslations } from "@/i18n";
+import { research } from "@/data/research";
 import config from "@/config";
 
 const { socials, posts: postsConfig } = config;
 
 const locale = Astro.currentLocale ?? config.site.lang;
-const t = useTranslations(locale);
 
 const posts = await getCollection("posts");
 const sortedPosts = getSortedPosts(posts);
-const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
-const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
+const recentPosts = sortedPosts.slice(0, postsConfig.perIndex);
+const homeResearch = research.slice(0, 3);
+
 const homePath = getRelativeLocaleUrl(locale, "");
 ---
 
 <Layout>
   <Header />
+
   <main
     id="main-content"
     data-layout="index"
     data-home-path={homePath}
-    class="app-layout my-1"
+    class="app-layout"
   >
-    <section id="hero" class="border-border border-b pt-8 pb-6">
-      <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">
-        Mingalaba
-      </h1>
-      <a
-        target="_blank"
-        href={`${import.meta.env.BASE_URL.replace(/\/?$/, "/")}rss.xml`}
-        class="inline-block"
-        aria-label="RSS Feed"
-        title="RSS Feed"
+    <!-- Hero -->
+    <section class="border-border border-b py-12">
+      <div
+        class="flex flex-col-reverse gap-8 sm:flex-row sm:items-center sm:justify-between"
       >
-        <IconRss
-          width={20}
-          height={20}
-          class="stroke-accent scale-125 stroke-3 rtl:-rotate-90"
-        />
-        <span class="sr-only">RSS Feed</span>
-      </a>
+        <div class="max-w-2xl">
+          <h1 class="mb-5 text-4xl font-bold sm:text-5xl">Hi, I'm Linglin.</h1>
 
-      <p>
-        AstroPaper is a minimal, responsive, accessible and SEO-friendly Astro
-        blog theme. This theme follows best practices and provides accessibility
-        out of the box. Light and dark mode are supported by default. Moreover,
-        additional color schemes can also be configured.
-      </p>
-      <p class="mt-2">
-        Read the blog posts or check{" "}
-        <LinkButton
-          class="hover:text-accent underline decoration-dashed underline-offset-4"
-          href="https://github.com/satnaing/astro-paper#readme"
-        >
-          README
-        </LinkButton>{" "}
-        for more info.
-      </p>
-      {
-        socials.length > 0 && (
-          <div class="mt-4 flex max-sm:flex-col sm:items-center">
-            <div class="me-2 mb-1 whitespace-nowrap sm:mb-0">
-              {t.home.socialLinks}:
-            </div>
-            <Socials />
-          </div>
-        )
-      }
+          <p class="leading-7">
+            I am a third-year undergraduate student in Computer Science at
+            SUSTech. My research focuses on{" "}
+            <strong>multimodal information retrieval</strong> and{" "}
+            <strong>efficient vision-language systems</strong>, particularly{
+              " "
+            }
+            <strong>visual document retrieval</strong> and representation compression,
+            under the supervision of{" "}
+            <a
+              href="https://xuemengsong.github.io/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-accent whitespace-nowrap underline decoration-dashed underline-offset-4"
+            >
+              <em>Prof. Xuemeng Song.</em>
+            </a>
+          </p>
+
+          <p class="mt-4 leading-7">
+            I am also interested in exploring LLM agents, multimodal reasoning,
+            and spatial intelligence.
+          </p>
+
+          <p class="mt-4 leading-7">
+            I also have experience in{" "}
+            <a
+              href={getRelativeLocaleUrl(locale, "projects")}
+              class="text-accent underline decoration-dashed underline-offset-4"
+            >
+              high-performance computing
+            </a>{" "}
+            through the SUSTech Supercomputing Team.
+          </p>
+
+          <p class="mt-5 text-sm tracking-wide opacity-75">
+            Beyond research: Badminton 🏸 · Guzheng 🪕 · Travel ⛰️
+          </p>
+
+          {
+            socials.length > 0 && (
+              <div class="mt-6 flex items-center gap-2">
+                <span class="mr-2">Elsewhere:</span>
+                <Socials />
+              </div>
+            )
+          }
+        </div>
+
+        <img
+          src="/profile.jpg"
+          alt="Linglin He"
+          class="h-52 w-40 shrink-0 rounded-2xl object-cover object-top sm:h-56 sm:w-44"
+        />
+      </div>
     </section>
 
-    {
-      featuredPosts.length > 0 && (
-        <section
-          id="featured"
-          class:list={[
-            "pt-12 pb-6",
-            { "border-border border-b": recentPosts.length > 0 },
-          ]}
+    <!-- Education -->
+    <section class="border-border border-b py-10">
+      <h2 class="mb-6 text-2xl font-semibold">Education</h2>
+
+      <div>
+        <div class="flex flex-col justify-between gap-1 sm:flex-row">
+          <div>
+            <h3 class="text-lg font-semibold">
+              Southern University of Science and Technology (SUSTech)
+            </h3>
+
+            <p class="mt-1">B.S. in Computer Science · Turing Class</p>
+          </div>
+
+          <span class="text-sm opacity-70"> Shenzhen, China </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Selected Research -->
+    <section class="border-border border-b py-10">
+      <div class="mb-6 flex items-center justify-between gap-4">
+        <h2 class="text-2xl font-semibold">Selected Research</h2>
+
+        <a
+          href={getRelativeLocaleUrl(locale, "research")}
+          class="text-accent whitespace-nowrap underline decoration-dashed underline-offset-4 hover:decoration-solid"
         >
-          <h2 class="text-2xl font-semibold tracking-wide">
-            {t.home.featured}
-          </h2>
+          View all
+        </a>
+      </div>
+
+      {homeResearch.map(item => <ResearchItem {...item} />)}
+    </section>
+
+    <!-- Recent Writing -->
+    <section class="py-10">
+      <div class="mb-4 flex items-center justify-between">
+        <h2 class="text-2xl font-semibold">Recent Writing</h2>
+      </div>
+
+      {
+        recentPosts.length > 0 ? (
           <ul>
-            {featuredPosts.map(data => (
+            {recentPosts.map(data => (
               <Card variant="h3" {...data} />
             ))}
           </ul>
-        </section>
-      )
-    }
+        ) : (
+          <p>No posts yet. More coming soon.</p>
+        )
+      }
 
-    {
-      recentPosts.length > 0 && (
-        <section id="recent-posts" class="pt-12 pb-6">
-          <h2 class="text-2xl font-semibold tracking-wide">
-            {t.home.recentPosts}
-          </h2>
-          <ul>
-            {recentPosts.slice(0, postsConfig.perIndex).map(data => (
-              <Card variant="h3" {...data} />
-            ))}
-          </ul>
-        </section>
-      )
-    }
-
-    <div class="my-8 text-center">
-      <LinkButton href={getRelativeLocaleUrl(locale, "posts")}>
-        {t.home.allPosts}
-        <IconArrowRight class="inline-block rtl:-rotate-180" />
-      </LinkButton>
-    </div>
+      <div class="mt-6">
+        <LinkButton href={getRelativeLocaleUrl(locale, "posts")}>
+          All Posts
+          <IconArrowRight class="inline-block rtl:-rotate-180" />
+        </LinkButton>
+      </div>
+    </section>
   </main>
+
   <Footer />
 </Layout>
 
@@ -130,7 +170,9 @@ const homePath = getRelativeLocaleUrl(locale, "");
   document.addEventListener("astro:page-load", () => {
     const indexLayout = (document.querySelector("#main-content") as HTMLElement)
       ?.dataset;
+
     const baseRoot = import.meta.env.BASE_URL.replace(/\/?$/, "/");
+
     if (indexLayout?.layout) {
       sessionStorage.setItem("backUrl", indexLayout.homePath ?? baseRoot);
     }

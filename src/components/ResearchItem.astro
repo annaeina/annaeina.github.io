@@ -1,0 +1,110 @@
+---
+import type { ResearchEntry } from "@/data/research";
+import { getAssetPath } from "@/utils/withBase";
+
+interface Props extends ResearchEntry {
+  headingLevel?: "h2" | "h3";
+}
+
+const {
+  image,
+  imageAlt,
+  imageWidth,
+  imageHeight,
+  title,
+  url,
+  authors,
+  venue,
+  links = [],
+  headingLevel = "h3",
+} = Astro.props;
+
+const isExternal = (href: string) => /^https?:\/\//.test(href);
+const resolveHref = (href: string) =>
+  isExternal(href) || href.startsWith("#") || href.startsWith("mailto:")
+    ? href
+    : getAssetPath(href);
+const Heading = headingLevel;
+---
+
+<article
+  class="research-item grid gap-6 py-9 first:pt-0 last:pb-0 sm:grid-cols-[240px_minmax(0,1fr)] sm:gap-7"
+>
+  <div class="flex items-center justify-center">
+    <img
+      src={getAssetPath(image)}
+      alt={imageAlt}
+      width={imageWidth}
+      height={imageHeight}
+      loading="lazy"
+      decoding="async"
+      class="max-h-64 w-full object-contain sm:max-h-60"
+    />
+  </div>
+
+  <div class="flex min-w-0 flex-col justify-center">
+    <Heading class="text-lg leading-6 font-semibold">
+      {
+        url ? (
+          <a
+            href={resolveHref(url)}
+            target={isExternal(url) ? "_blank" : undefined}
+            rel={isExternal(url) ? "noopener noreferrer" : undefined}
+            class="text-accent hover:underline"
+          >
+            {title}
+          </a>
+        ) : (
+          <span class="text-accent">{title}</span>
+        )
+      }
+    </Heading>
+
+    <p class="mt-1 leading-6">
+      {
+        authors.map((author, index) => (
+          <Fragment>
+            {author.url ? (
+              <a
+                href={resolveHref(author.url)}
+                target={isExternal(author.url) ? "_blank" : undefined}
+                rel={isExternal(author.url) ? "noopener noreferrer" : undefined}
+                class:list={["hover:text-accent", { "font-bold": author.me }]}
+              >
+                {author.name}
+              </a>
+            ) : (
+              <span class:list={{ "font-bold": author.me }}>{author.name}</span>
+            )}
+            {index < authors.length - 1 ? ", " : ""}
+          </Fragment>
+        ))
+      }
+    </p>
+
+    <p class="mt-1 text-lg italic">{venue}</p>
+
+    {
+      links.length > 0 && (
+        <nav
+          class="mt-1 flex flex-wrap items-center gap-x-2 text-lg"
+          aria-label={`Links for ${title}`}
+        >
+          {links.map((link, index) => (
+            <Fragment>
+              {index > 0 && <span aria-hidden="true">/</span>}
+              <a
+                href={resolveHref(link.url)}
+                target={isExternal(link.url) ? "_blank" : undefined}
+                rel={isExternal(link.url) ? "noopener noreferrer" : undefined}
+                class="text-accent hover:underline"
+              >
+                {link.label}
+              </a>
+            </Fragment>
+          ))}
+        </nav>
+      )
+    }
+  </div>
+</article>
